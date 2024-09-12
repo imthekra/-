@@ -1,0 +1,37 @@
+const yesBtn = document.querySelector(".yes-btn");
+const noBtn = document.querySelector(".no-btn");
+const question = document.querySelector(".question");
+const gifContainer = document.querySelector("#initial-gif"); // استدعاء GIF الأول
+
+// تغيير النص والصورة المتحركة عند الضغط على زر Yes
+yesBtn.addEventListener("click", () => {
+    question.innerHTML = "I Love You More NONY";
+    
+    // إزالة الـ GIF الأول واستبداله بالـ GIF الثاني
+    gifContainer.innerHTML = `<div class="tenor-gif-embed" data-postid="14677582" data-share-method="host" data-aspect-ratio="1.11111" data-width="100%">
+        <a href="https://tenor.com/view/tonton-friends-tsundere-cat-bella-cute-cat-cute-dog-gif-14677582">Tonton Friends Tsundere Cat Sticker</a>from 
+        <a href="https://tenor.com/search/tonton+friends-stickers">Tonton Friends Stickers</a></div>`;
+    
+    // إعادة تحميل سكريبت Tenor لعرض GIF الجديد
+    const tenorScript = document.createElement("script");
+    tenorScript.type = "text/javascript";
+    tenorScript.async = true;
+    tenorScript.src = "https://tenor.com/embed.js";
+    document.body.appendChild(tenorScript);
+});
+
+// تحريك زر No بشكل عشوائي
+noBtn.addEventListener("mouseover", () => {
+  const wrapper = document.querySelector(".wrapper");
+  const wrapperRect = wrapper.getBoundingClientRect();
+  const noBtnRect = noBtn.getBoundingClientRect();
+
+  const maxX = wrapperRect.width - noBtnRect.width;
+  const maxY = wrapperRect.height - noBtnRect.height;
+
+  const randomX = Math.floor(Math.random() * maxX);
+  const randomY = Math.floor(Math.random() * maxY);
+
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
+});
